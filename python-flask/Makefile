@@ -27,7 +27,7 @@ stop:  ## Stop the running containers
 
 .PHONY: build
 build: ## Build the python docker image
-	docker build --no-cache --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest .
+	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest .
 
 .PHONY: clear
 clear:  ## Clear volumes and stop containers
@@ -45,7 +45,7 @@ shell: ## Open a bash shell on a python-flask container
 ##
 .PHONY: test
 test: ## Shortcut to launch all the test tasks (unit, functional and integration).
-	$(SHELL_COMMAND_WITHOUT_DEPS) "COVERAGE_FILE=/tmp/.coverage pytest -vv -p no:cacheprovider -Werror --cov . --cov-config .coveragerc --cov-report term-missing tests"
+	$(SHELL_COMMAND_WITHOUT_DEPS) "pytest -Werror tests"
 
 
 ##

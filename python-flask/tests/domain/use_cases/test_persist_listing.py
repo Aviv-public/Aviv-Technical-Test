@@ -8,25 +8,21 @@ from tests import factories
 class TestPersistListing:
     @pytest.fixture
     def listing_entity(self) -> entities.ListingEntity:
-        listing_entity = (
-            factories.entities.Listing()
-            .with_name("Mikhail Schmiedt")
-            .with_description("description")
-            .with_building_type("APARTMENT")
-            .with_rooms_count(6)
-            .with_bedrooms_count(2)
-            .with_surface_area_m2(167)
-            .with_postal_address(
-                factories.entities.PostalAddress()
-                .with_street_address("Johan-Ernst-Ring 7")
-                .with_postal_code("21810")
-                .with_city("Berchtesgaden")
-                .with_country("DE")
-                .build()
-            )
-            .with_price(720000)
-            .with_contact_phone_number("")
-            .build()
+        listing_entity = factories.entities.Listing(
+            bedrooms_count=2,
+            building_type="APARTMENT",
+            contact_phone_number="",
+            description="description",
+            latest_price_eur=720000,
+            name="Mikhail Schmiedt",
+            postal_address=factories.entities.PostalAddress(
+                city="Berchtesgaden",
+                country="DE",
+                postal_code="21810",
+                street_address="Johan-Ernst-Ring 7",
+            ),
+            rooms_count=6,
+            surface_area_m2=167,
         )
 
         return listing_entity

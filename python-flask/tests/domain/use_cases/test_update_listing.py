@@ -11,9 +11,7 @@ class TestUpdateListing:
         persist_listing_use_case: use_cases.PersistListing,
         update_listing_use_case: use_cases.UpdateListing,
     ) -> None:
-        listing_entity = (
-            factories.entities.Listing().with_name("Mikhail Schmiedt").build()
-        )
+        listing_entity = factories.entities.Listing(name="Mikhail Schmiedt")
         persisted_listing = persist_listing_use_case.listing_repository.create(
             listing_entity
         )
